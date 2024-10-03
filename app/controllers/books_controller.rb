@@ -19,6 +19,9 @@ class BooksController < ApplicationController
   def edit
   end
   
+  def destroy
+  end
+  
   private
   
     def create_book_params
