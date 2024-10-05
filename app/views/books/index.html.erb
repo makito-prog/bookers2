@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row d-flex">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <% if @book.errors.any? %>
         <%= @book.errors.count %>件のエラーが発生しました
         <ul>
@@ -14,7 +14,7 @@
     </div>
 
     <!-- 本のリスト部分 -->
-    <div class="col-md-8">
+    <div class="offset-md-1 col-md-8">
       <h1>Books</h1>
       <table class="table">
         <thead>

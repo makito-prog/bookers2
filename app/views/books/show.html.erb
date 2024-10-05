@@ -4,15 +4,15 @@
 
 <div class="container">
   <div class="row d-flex">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <%= render 'user', user: @user, book: @new_book %>
     </div>
-    <div class="col-md-8">
+    <div class="offset-md-1 col-md-8">
       <h1>Book detail</h1>
       <table class="table">
           <tbody>
             <td>
-              <%= link_to user_path(current_user.id) do %>
+              <%= link_to user_path(@book.user.id) do %>
                 <%= image_tag @book.user.get_profile_image(100, 100), class: "d-block" %>
                 <%= @book.user.name %>
               <% end %>
