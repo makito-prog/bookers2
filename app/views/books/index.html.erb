@@ -1,32 +1,22 @@
-<div class="d-flex">
-  <div>
-    
-    <div>
-      <h1>User info</h1>
-      <%= image_tag @user.get_profile_image(100, 100) %>
-      <h3><span>name</span>  <%= @user.name %></h3>
-      <h3><span>introduction</span>  <%= @user.introduction %></h3>
-      <%= link_to edit_user_path(current_user.id) do %>
-        <i class="fa-solid fa-user-gear"></i>
+<div class="container">
+  <div class="row d-flex">
+    <div class="col-md-4">
+      <% if @book.errors.any? %>
+        <%= @book.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
+      
+      <%= render 'user', user: @user, book: @book %>
     </div>
-    
-    <div>
-      <h1>New book</h1>
-      <%= form_with model: @book do |f| %>
-        <h4>Title</h4>
-        <%= f.text_field :title %>
-        <h4>Opinion</h4>
-        <%= f.text_area :body %>
-        <%= f.submit 'Create Book' %>
-      <% end %>
-    </div>
-  </div>
-  
-  <div>
-    <h1>Books</h1>
-    
-      <table>
+
+    <!-- 本のリスト部分 -->
+    <div class="col-md-8">
+      <h1>Books</h1>
+      <table class="table">
         <thead>
           <tr>
             <th></th>
@@ -36,19 +26,22 @@
         </thead>
         <tbody>
           <% @books.each do |book| %>
-            <td>
-              <%= link_to user_path(current_user.id) do %>
-                <%= image_tag book.user.get_profile_image(100, 100) %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to book_path(book.id) do %>
-                <%= book.title %>
-              <% end %>
-            </td>
-            <td><%= book.body %></td>
+            <tr>
+              <td>
+                <%= link_to user_path(current_user.id) do %>
+                  <%= image_tag book.user.get_profile_image(100, 100) %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to book_path(book.id) do %>
+                  <%= book.title %>
+                <% end %>
+              </td>
+              <td><%= book.body %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>
+    </div>
   </div>
 </div>

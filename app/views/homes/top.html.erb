@@ -1,9 +1,13 @@
-<div class="d-flex justify-content-center">
+<% flash.each do |message_type, message| %>
+  <%= content_tag :div, message, class: message_type %>
+<% end %>
+
+<div class="container d-flex justify-content-center mt-3">
   <div class="top">
     <h1>welcome to <i class="fa-solid fa-book"></i> Bookers !!</h1>
     <p>In <i class="fa-solid fa-book"></i> <b>Bookers</b>,</p>
     <p>you can share and exchange your opinions , inpressions , and emotions about various books!</p>
-    <%= link_to 'Log in', new_user_session_path, class: 'btn btn-info w-75 h-5 m-5' %>
-    <%= link_to 'Sgin up', new_user_registration_path, class: 'btn btn-success w-75 h-5 m-5' %>
+    <%= link_to 'Log in', new_user_session_path, class: 'btn btn-info d-block mt-2' %>
+    <%= link_to 'Sgin up', new_user_registration_path, class: 'btn btn-success d-block mt-2' %>
   </div>
 </div>
