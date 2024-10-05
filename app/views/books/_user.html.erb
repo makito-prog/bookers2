@@ -14,7 +14,7 @@
             <td><%= user.introduction %></td>
           </tr>
         </table>
-        <%= link_to edit_user_path(current_user.id), class: 'btn btn-outline-secondary w-100 mt-2' do %>
+        <%= link_to edit_user_path(@user.id), class: 'btn btn-outline-secondary w-100 mt-2' do %>
           <i class="fa-solid fa-user-gear" style="color: #989da4;"></i>
         <% end %>
       </div>
