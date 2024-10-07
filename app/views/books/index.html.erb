@@ -23,6 +23,7 @@
             <th>Title</th>
             <th>Opinion</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -42,16 +43,17 @@
               <% if book.favorited_by?(current_user) %>
                 <td>
                   <%= link_to book_favorite_path(book), method: :delete do %>
-                    ♥<%= book.favorites.count %> いいね
+                    <i class="fa-solid fa-heart" style="color: #dd2c2c;"></i><%= book.favorites.count %>
                   <% end %>
                 </td>
                 <% else %>
                 <td>
                   <%= link_to book_favorite_path(book), method: :post do %>
-                    ♡<%= book.favorites.count %> いいね
+                     <i class="fa-solid fa-heart" style="color: #5b2cdd;"></i><%= book.favorites.count %>
                   <% end %>
                 </td>
               <% end %>
+              <td>コメント件数：<%= book.book_comments.count %></td>
             </tr>
           <% end %>
         </tbody>

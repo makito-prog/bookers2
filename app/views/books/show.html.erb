@@ -29,38 +29,38 @@
               <% if @book.favorited_by?(current_user) %>
                 <td>
                   <%= link_to book_favorite_path(@book), method: :delete do %>
-                    ♥<%= @book.favorites.count %> いいね
+                    <i class="fa-solid fa-heart" style="color: #dd2c2c;"></i><%= @book.favorites.count %>
                   <% end %>
                 </td>
               <% else %>
                 <td>
                   <%= link_to book_favorite_path(@book), method: :post do %>
-                    ♡<%= @book.favorites.count %> いいね
+                     <i class="fa-solid fa-heart" style="color: #5b2cdd;"></i><%= @book.favorites.count %>
                   <% end %>
                 </td>
               <% end %>
             <% end %>
-            <td>コメント件数：<%= @book.post_comments.count %></td>
+            <td>コメント件数：<%= @book.book_comments.count %></td>
           </tbody>
       </table>
       <div>
-        <% @book.post_comments.each do |post_comment| %>
+        <% @book.book_comments.each do |book_comment| %>
           <div class="d-flex mb-3">
             <div>
-              <p class="m-0"><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-              <%= post_comment.user.name %>
+              <p class="m-0"><%= image_tag book_comment.user.get_profile_image(100,100) %></p>
+              <%= book_comment.user.name %>
             </div>
             <div class="m-2">
-              <%= post_comment.comment %>
+              <%= book_comment.comment %>
             </div>
-            <% if post_comment.user == current_user %>
-              <%= link_to "削除", book_post_comment_path(post_comment.book, post_comment),class: "m-2", method: :delete %>
+            <% if book_comment.user == current_user %>
+              <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment),class: "m-2", method: :delete %>
             <% end %>
           </div>
         <% end %>
       </div>
       <div>
-        <%= form_with model: [@book, @post_comment] do |f| %>
+        <%= form_with model: [@book, @book_comment] do |f| %>
           <%= f.text_area :comment, placeholder: "コメントをここに", class: 'w-100' %>
           <%= f.submit "送信", class: 'd-block' %>
         <% end %>
